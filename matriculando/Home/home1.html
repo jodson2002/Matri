@@ -102,6 +102,12 @@
             <a href="cadastro.html">Cadastro</a>
         </nav>
 
+        <div class="accessibility-button">
+            <button id="increase-font-size" onclick="increaseFontSize()">Aumentar Fonte</button>
+            <button id="decrease-font-size" onclick="decreaseFontSize()">Diminuir Fonte</button>
+            <button id="high-contrast" onclick="toggleHighContrast()">Alto Contraste</button>
+        </div>
+
         <div class="container">
             <h2>Apresentando a TechEducação: Expandindo Horizontes Digitais</h2>
             <p>Na era da informação, a TechEducação surge como um farol de conhecimento, iluminando o caminho para o
@@ -174,12 +180,77 @@
                 sucesso começa
                 aqui, na TechEducação.</p>
 
-            <h2>Contato</h2>
+            <h2>Contatos</h2>
             <p>Você pode nos contatar em:</p>
             <p>Email: contato@meusite.com</p>
-            <p>Telefone: (55) 81 95456-7890</p>
+            <p>Telefone: +55 (81) 95456-7890</p>
         </div>
     </div>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    
+
+    
+
+<script>
+    // Função para aumentar o tamanho da fonte
+    function increaseFontSize() {
+        const body = document.body;
+        const currentFontSize = window.getComputedStyle(body, null).getPropertyValue('font-size');
+        const newSize = (parseInt(currentFontSize) + 2) + 'px';
+        body.style.fontSize = newSize;
+    }
+
+    function decreaseFontSize() {
+            const body = document.body;
+            const currentFontSize = window.getComputedStyle(body, null).getPropertyValue('font-size');
+            const newSize = (parseInt(currentFontSize) - 2) + 'px';
+            body.style.fontSize = newSize;
+        }
+
+    // Função para ativar/desativar alto contraste
+    function toggleHighContrast() {
+            const container = document.querySelector('.container');
+            const currentBackgroundColor = window.getComputedStyle(container, null).getPropertyValue('background-color');
+            if (currentBackgroundColor === 'rgb(255, 255, 255)') {
+                container.style.backgroundColor = '#000';
+                container.style.color = '#fff';
+            } else {
+                container.style.backgroundColor = '#fff';
+                container.style.color = '#000';
+            }
+        }
+    
+
+    function toggleScreenReaderDescriptions() {
+        const elementsWithDescriptions = document.querySelectorAll('[data-screen-reader-description]');
+        elementsWithDescriptions.forEach(element => {
+            if (element.getAttribute('aria-label')) {
+                element.removeAttribute('aria-label');
+            } else {
+                element.setAttribute('aria-label', element.getAttribute('data-screen-reader-description'));
+            }
+        });
+    }
+
+    function removeScreenReaderDescriptions() {
+        const elementsWithDescriptions = document.querySelectorAll('[data-screen-reader-description]');
+        elementsWithDescriptions.forEach(element => {
+            element.removeAttribute('aria-label');
+        });
+    }
+</script>
+
 </body>
+
+</html>
 
 </html>
